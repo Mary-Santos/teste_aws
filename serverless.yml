@@ -1,0 +1,37 @@
+service: client-registration
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  createClient:
+    handler: src/handlers/createClient.createClient
+    events:
+      - http:
+          path: client
+          method: post
+          cors: true
+  getClient:
+    handler: src/handlers/getClient.getClient
+    events:
+      - http:
+          path: client/{id}
+          method: get
+          cors: true
+  updateClient:
+    handler: src/handlers/updateClient.updateClient
+    events:
+      - http:
+          path: client/{id}
+          method: put
+          cors: true
+  deleteClient:
+    handler: src/handlers/deleteClient.deleteClient
+    events:
+      - http:
+          path: client/{id}
+          method: delete
+          cors: true
